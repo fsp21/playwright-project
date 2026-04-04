@@ -1,5 +1,4 @@
-
-export const testData = {
-    userEmail: 'fsp.docker@gmail.com',
-    userPassword: 'Kopdyv-5duspi-mudwox',
+export const data = {
+    userEmail: process.env.USER_EMAIL ?? '',
+    userPassword: process.env.USER_PASSWORD ?? '',
 };

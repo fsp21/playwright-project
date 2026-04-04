@@ -16,7 +16,7 @@ export class TopNavigationBar {
   }
 
   async expectLogoutButtonVisible() {
-    await expect(this.logOutButton).toBeVisible({timeout: 10000});
+    await expect(this.logOutButton).toBeVisible();
   }
 
 }
