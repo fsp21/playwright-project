@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './playwright-tests',
+  testDir: './tests-playwright',
   retries: process.env.CI ? 1 : 0,
   workers: 1,
 
@@ -17,14 +17,14 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
-      testMatch: 'ui/**/*.spec.ts',
+      testMatch: 'tests-ui/**/*.spec.ts',
     },
     {
       name: 'api',
       use: {
         baseURL: 'https://restful-booker.herokuapp.com',
       },
-      testMatch: 'api/**/*.spec.ts',
+      testMatch: 'tests-api/**/*.spec.ts',
     },
   ],
 });
