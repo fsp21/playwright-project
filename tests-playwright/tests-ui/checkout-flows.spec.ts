@@ -9,7 +9,7 @@ import { data } from '../helpers/constants'
 
 const expirationDate = data.creditCardExpirationDate;
 const securityCode = data.creditCardSecurityCode;
-const nameOnCard = data.nameOnCreditCard;
+
 
 test.beforeEach('Common flow', async ({page}) => {
   const sideBar = new SideBar(page);
@@ -56,7 +56,6 @@ test('Add one product to cart and checkout', async ({ page }) => {
     cardNumber: cardNumber,
     expirationDate: expirationDate,
     securityCode: securityCode,
-    nameOnCard: nameOnCard
 });
 
   await checkoutPage.clickPayNow();
@@ -83,7 +82,6 @@ test('Verify invalid card fails checkout', async ({ page }) => {
     cardNumber: invalidCardNumber,
     expirationDate: expirationDate,
     securityCode: securityCode,
-    nameOnCard: nameOnCard
 });
 
   await checkoutPage.clickPayNow();

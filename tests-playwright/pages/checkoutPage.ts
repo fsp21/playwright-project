@@ -140,7 +140,6 @@ export class CheckOutPage {
     cardNumber: string;
     expirationDate: string;
     securityCode: string;
-    nameOnCard: string;
   }) {
     await this.fillCardNumber(details.cardNumber);
     await this.fillExpirationDate(details.expirationDate);
