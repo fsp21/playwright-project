@@ -1,10 +1,10 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class LoginPage {
-  readonly page: Page;
-  readonly emailAddressField: Locator;
-  readonly passwordField: Locator;
-  readonly signInButton: Locator;
+  private readonly page: Page;
+  private readonly emailAddressField: Locator;
+  private readonly passwordField: Locator;
+  private readonly signInButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

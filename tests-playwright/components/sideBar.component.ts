@@ -1,8 +1,8 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class SideBar {
-  readonly page: Page;
-  readonly catalogButton: Locator;
+  private readonly page: Page;
+  private readonly catalogButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

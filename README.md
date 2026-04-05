@@ -6,13 +6,5 @@ Login and Signup tests are being skipped due to bot protection recognizing Playw
 
 ## Test Payment Credentials
 
-This project uses Shopify's Bogus Gateway for checkout testing (integrated into https://sauce-demo.myshopify.com/checkouts)
+This project uses Shopify's Bogus Gateway for checkout testing (integrated into https://sauce-demo.myshopify.com/checkouts). 1 = success, 2 = failure and 3 = gateway error (https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
 
-| Field         | Value                  |
-|---------------|------------------------|
-| Card number   | `1` (success), `2` (failure), `3` (gateway error) |
-| Name on card  | Any two words          |
-| Expiry date   | Any future date        |
-| Security code | Any 3 digits           |
-
-Source: [Shopify Help Center – Activating a payment gateway in test mode](https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
