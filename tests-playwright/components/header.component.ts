@@ -16,7 +16,7 @@ export class Header {
     this.logOutButton = this.page.getByRole('link', {name: 'Log Out'});
     this.myCartButton = this.page.getByRole('link', {name: 'My Cart'});
     this.checkOutButton = this.page.getByRole('link', {name: 'Check Out'});
-    this.cartProductsCount = page.locator('#cart-target-desktop');
+    this.cartProductsCount = this.page.locator('#cart-target-desktop');
   }
 
   async clickLogIn() {

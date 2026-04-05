@@ -6,7 +6,7 @@ export class CartPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.checkOutButton = page.getByRole('button', {name: 'Check out'});
+    this.checkOutButton = this.page.getByRole('button', {name: 'Check out'});
   }
   
   async clickCheckOutButton() {

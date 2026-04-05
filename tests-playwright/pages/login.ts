@@ -8,9 +8,9 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailAddressField = page.getByLabel('Email Address');
-    this.passwordField = page.getByLabel('Password');
-    this.signInButton = page.getByRole('button', {name: 'Sign in'})
+    this.emailAddressField = this.page.getByLabel('Email Address');
+    this.passwordField = this.page.getByLabel('Password');
+    this.signInButton = this.page.getByRole('button', {name: 'Sign in'})
   }
 
   async signInWithCredentials(userEmail: string, userPassword: string) {

@@ -12,13 +12,13 @@ export class SignUpPage {
   constructor(page: Page) {
     this.page = page;
     // div and input have same "first name" name, can't use label 
-    this.firstNameField = page.locator('input#first_name');
-    this.lastNameField = page.locator('input#last_name');
-    this.emailAddressField = page.locator('input#email');
-    this.passwordField = page.locator('input#password');
-    this.createButton = page.getByRole('button', {name: 'Create'})
+    this.firstNameField = this.page.locator('input#first_name');
+    this.lastNameField = this.page.locator('input#last_name');
+    this.emailAddressField = this.page.locator('input#email');
+    this.passwordField = this.page.locator('input#password');
+    this.createButton = this.page.getByRole('button', {name: 'Create'})
     // is this localized? other languages etc
-    this.emailAlreadyInUseMessage = page.getByText('This email address is already associated with an account. If this account is yours, you can reset your password')
+    this.emailAlreadyInUseMessage = this.page.getByText('This email address is already associated with an account. If this account is yours, you can reset your password')
   }
 
   async signUp(userEmail: string, userPassword: string) {

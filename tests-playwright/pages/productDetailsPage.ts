@@ -9,10 +9,10 @@ export class ProductDetailsPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.productSizeDropdown = page.getByLabel('Size');
-    this.productColorDropdown = page.getByLabel('Color');
-    this.addToCartButton = page.getByRole('button', {name: 'Add to cart'});
-    this.soldOutButton = page.getByRole('button', {name: 'Sold Out'});
+    this.productSizeDropdown = this.page.getByLabel('Size');
+    this.productColorDropdown = this.page.getByLabel('Color');
+    this.addToCartButton = this.page.getByRole('button', {name: 'Add to cart'});
+    this.soldOutButton = this.page.getByRole('button', {name: 'Sold Out'});
   };
 
   async selectSize(productSize: string) {

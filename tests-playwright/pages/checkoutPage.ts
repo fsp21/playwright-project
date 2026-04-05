@@ -20,17 +20,17 @@ export class CheckOutPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailAddressField = page.getByLabel('Email', {exact: true});
-    this.firstNameField = page.getByLabel('First name (optional)');
+    this.emailAddressField = this.page.getByLabel('Email', {exact: true});
+    this.firstNameField = this.page.getByLabel('First name (optional)');
     // There's other 'last name' fields hidden in the DOM, need to be very specific
-    this.lastNameField = page.locator('input[name="lastName"][required]');
-    this.companyField = page.getByLabel('Company (Optional)');
-    this.deliveryCountryDropDown = page.locator('[name="countryCode"]');
-    this.addressField = page.getByPlaceholder('Address');
-    this.postalCodeField = page.getByRole('textbox', { name: 'Postal code' });
-    this.cityField = page.getByPlaceholder('City');
-    this.phoneField = page.getByPlaceholder('Phone');
-    this.saveInfoCheckbox = page.getByLabel('Save this information for next time');
+    this.lastNameField = this.page.locator('input[name="lastName"][required]');
+    this.companyField = this.page.getByLabel('Company (Optional)');
+    this.deliveryCountryDropDown = this.page.locator('[name="countryCode"]');
+    this.addressField = this.page.getByPlaceholder('Address');
+    this.postalCodeField = this.page.getByRole('textbox', { name: 'Postal code' });
+    this.cityField = this.page.getByPlaceholder('City');
+    this.phoneField = this.page.getByPlaceholder('Phone');
+    this.saveInfoCheckbox = this.page.getByLabel('Save this information for next time');
 
     // Payment info sits inside iframes
     this.creditCardNumberField = page
