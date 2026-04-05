@@ -16,7 +16,6 @@ test.beforeEach('Common flow', async ({page}) => {
   const catalogPage = new CatalogPage(page);
   const header = new Header(page);
   const cartPage = new CartPage(page);
-  const checkoutPage = new CheckOutPage(page);
   const productDetailsPage = new ProductDetailsPage(page);
 
   await page.goto('/');
