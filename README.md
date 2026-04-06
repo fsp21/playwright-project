@@ -1,4 +1,4 @@
-# NB-project
+# playwright-project
 
 This project was built as a demo exercise to illustrate a Playwright test project, which includes UI and API tests and support files/structures.
 

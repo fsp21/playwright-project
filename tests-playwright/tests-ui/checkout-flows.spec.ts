@@ -40,7 +40,7 @@ test('Add one product to cart and checkout', async ({ page }) => {
   const cardNumber = data.creditCardNumber;
 
   await checkoutPage.fillDeliveryAddressInfo({
-    email: 'test@nb.com',
+    email: 'test@abc.com',
     firstName: 'FirstName',
     lastName: 'LastName',
     company: 'Old Blue',
@@ -66,7 +66,7 @@ test('Verify invalid card fails checkout', async ({ page }) => {
   const invalidCardNumber = data.invalidCreditCardNumber;
 
   await checkoutPage.fillDeliveryAddressInfo({
-    email: 'test@nb.com',
+    email: 'test@abc.com',
     firstName: 'FirstName',
     lastName: 'LastName',
     company: 'Old Blue',
