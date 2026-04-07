@@ -11,7 +11,7 @@ This project was built as a demo exercise to illustrate a Playwright test projec
 
 ```bash
 git clone https://github.com/fsp21/playwright-project.git
-cd NB-project
+cd playwright-project
 npm install
 npx playwright install
 ```
