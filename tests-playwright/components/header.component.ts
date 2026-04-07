@@ -11,11 +11,11 @@ export class Header {
 
   constructor(page: Page) {
     this.page = page;
-    this.loginButton = this.page.getByRole('link', {name: 'Log In'});
-    this.signUpButton = this.page.getByRole('link', {name: 'Sign Up'});
-    this.logOutButton = this.page.getByRole('link', {name: 'Log Out'});
-    this.myCartButton = this.page.getByRole('link', {name: 'My Cart'});
-    this.checkOutButton = this.page.getByRole('link', {name: 'Check Out'});
+    this.loginButton = this.page.getByRole('link', { name: 'Log In' });
+    this.signUpButton = this.page.getByRole('link', { name: 'Sign Up' });
+    this.logOutButton = this.page.getByRole('link', { name: 'Log Out' });
+    this.myCartButton = this.page.getByRole('link', { name: 'My Cart' });
+    this.checkOutButton = this.page.getByRole('link', { name: 'Check Out' });
     this.cartProductsCount = this.page.locator('#cart-target-desktop');
   }
 

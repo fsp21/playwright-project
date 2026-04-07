@@ -16,10 +16,9 @@ test('Add one product to cart', async ({ page }) => {
 
   await catalogPage.clickProduct('Noir jacket');
 
-  await productDetailsPage.addProductFlow({ 
+  await productDetailsPage.addProductFlow({
     productSize: 'L',
-    colorName: 'Red'
-  })
+    colorName: 'Red',
+  });
   await header.expectProductAddedToCart(1);
-  
 });

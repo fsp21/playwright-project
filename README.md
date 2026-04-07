@@ -11,4 +11,3 @@ Further checks can be implemented if we can control the data, such as the price/
 ## Test Payment Credentials
 
 This project uses Shopify's Bogus Gateway for checkout testing (integrated into https://sauce-demo.myshopify.com/checkouts). 1 = success, 2 = failure and 3 = gateway error (https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
-

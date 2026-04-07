@@ -6,7 +6,7 @@ export class SideBar {
 
   constructor(page: Page) {
     this.page = page;
-    this.catalogButton = this.page.getByRole('link', {name: 'Catalog'});
+    this.catalogButton = this.page.getByRole('link', { name: 'Catalog' });
   }
 
   async clickCatalogButton() {
@@ -16,5 +16,4 @@ export class SideBar {
   async expectCatalogPageTitle() {
     await expect(this.page).toHaveTitle(/Products/);
   }
-
 }

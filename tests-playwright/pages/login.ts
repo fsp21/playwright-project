@@ -10,7 +10,7 @@ export class LoginPage {
     this.page = page;
     this.emailAddressField = this.page.getByLabel('Email Address');
     this.passwordField = this.page.getByLabel('Password');
-    this.signInButton = this.page.getByRole('button', {name: 'Sign in'})
+    this.signInButton = this.page.getByRole('button', { name: 'Sign in' });
   }
 
   async signInWithCredentials(userEmail: string, userPassword: string) {
@@ -18,5 +18,4 @@ export class LoginPage {
     await this.passwordField.fill(userPassword);
     await this.signInButton.click();
   }
-
 }

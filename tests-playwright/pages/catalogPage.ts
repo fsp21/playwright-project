@@ -5,10 +5,9 @@ export class CatalogPage {
 
   constructor(page: Page) {
     this.page = page;
-  };
+  }
 
   async clickProduct(productName: string) {
-    await this.page.getByRole('link', {name: productName}).click();
-  };
-
+    await this.page.getByRole('link', { name: productName }).click();
+  }
 }

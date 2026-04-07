@@ -11,36 +11,35 @@ export class ProductDetailsPage {
     this.page = page;
     this.productSizeDropdown = this.page.getByLabel('Size');
     this.productColorDropdown = this.page.getByLabel('Color');
-    this.addToCartButton = this.page.getByRole('button', {name: 'Add to cart'});
-    this.soldOutButton = this.page.getByRole('button', {name: 'Sold Out'});
-  };
+    this.addToCartButton = this.page.getByRole('button', {
+      name: 'Add to cart',
+    });
+    this.soldOutButton = this.page.getByRole('button', { name: 'Sold Out' });
+  }
 
   async selectSize(productSize: string) {
-    await this.productSizeDropdown.selectOption(productSize)
-  };
+    await this.productSizeDropdown.selectOption(productSize);
+  }
 
   async selectColor(colorName: string) {
-    await this.productColorDropdown.selectOption(colorName)
-  };
+    await this.productColorDropdown.selectOption(colorName);
+  }
 
   async clickAddToCart() {
     await this.addToCartButton.click();
-  };
+  }
 
-  async addProductFlow(details: {
-    productSize: string,
-    colorName:string
-  }) {
+  async addProductFlow(details: { productSize: string; colorName: string }) {
     await this.selectSize(details.productSize);
     await this.selectColor(details.colorName);
     await this.clickAddToCart();
-  };
+  }
 
   async expectSoldOutButtonToBeVisible() {
     await expect(this.soldOutButton).toBeDisabled();
-  };
+  }
 
-  async expectAddToCartButtonToBeHidden(){
+  async expectAddToCartButtonToBeHidden() {
     await expect(this.addToCartButton).toBeHidden();
   }
 }

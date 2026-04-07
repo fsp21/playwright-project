@@ -20,33 +20,39 @@ export class CheckOutPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailAddressField = this.page.getByLabel('Email', {exact: true});
+    this.emailAddressField = this.page.getByLabel('Email', { exact: true });
     this.firstNameField = this.page.getByLabel('First name (optional)');
     // There's other 'last name' fields hidden in the DOM, need to be very specific
     this.lastNameField = this.page.locator('input[name="lastName"][required]');
     this.companyField = this.page.getByLabel('Company (Optional)');
     this.deliveryCountryDropDown = this.page.locator('[name="countryCode"]');
     this.addressField = this.page.getByPlaceholder('Address');
-    this.postalCodeField = this.page.getByRole('textbox', { name: 'Postal code' });
+    this.postalCodeField = this.page.getByRole('textbox', {
+      name: 'Postal code',
+    });
     this.cityField = this.page.getByPlaceholder('City');
     this.phoneField = this.page.getByPlaceholder('Phone');
-    this.saveInfoCheckbox = this.page.getByLabel('Save this information for next time');
+    this.saveInfoCheckbox = this.page.getByLabel(
+      'Save this information for next time',
+    );
 
     // Payment info sits inside iframes
     this.creditCardNumberField = page
-    .frameLocator('[id^="card-fields-number"]')
-    .getByPlaceholder('Card number');
+      .frameLocator('[id^="card-fields-number"]')
+      .getByPlaceholder('Card number');
 
     this.creditCardExpirationDateField = page
-    .frameLocator('[id^="card-fields-expiry"]')
-    .getByPlaceholder('Expiration date (MM / YY)');
-    
-    this.creditCardSecurityCodeField = page
-    .frameLocator('[id^="card-fields-verification_value"]')
-    .getByPlaceholder('Security code');
+      .frameLocator('[id^="card-fields-expiry"]')
+      .getByPlaceholder('Expiration date (MM / YY)');
 
-    this.useShippingAddressCheckbox = page.getByLabel('Use shipping address as billing address');
-    this.payNowButton = page.getByRole('button', {name: 'Pay now'});
+    this.creditCardSecurityCodeField = page
+      .frameLocator('[id^="card-fields-verification_value"]')
+      .getByPlaceholder('Security code');
+
+    this.useShippingAddressCheckbox = page.getByLabel(
+      'Use shipping address as billing address',
+    );
+    this.payNowButton = page.getByRole('button', { name: 'Pay now' });
   }
 
   async fillContactEmail(email: string) {
@@ -110,7 +116,9 @@ export class CheckOutPage {
   }
 
   async expectPaymentUnsuccessful() {
-    await expect(this.page.getByText('There was an issue processing your payment')).toBeVisible();
+    await expect(
+      this.page.getByText('There was an issue processing your payment'),
+    ).toBeVisible();
   }
 
   async fillDeliveryAddressInfo(details: {
@@ -144,6 +152,6 @@ export class CheckOutPage {
     await this.fillCardNumber(details.cardNumber);
     await this.fillExpirationDate(details.expirationDate);
     await this.fillSecurityCode(details.securityCode);
-    if (!(this.saveInfoCheckbox.isChecked)) await this.saveInfoCheckbox.check();
+    if (!this.saveInfoCheckbox.isChecked) await this.saveInfoCheckbox.check();
   }
 }

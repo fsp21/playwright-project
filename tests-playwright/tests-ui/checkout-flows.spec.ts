@@ -5,13 +5,12 @@ import { CatalogPage } from '../pages/catalogPage';
 import { CartPage } from '../pages/cartPage';
 import { CheckOutPage } from '../pages/checkoutPage';
 import { ProductDetailsPage } from '../pages/productDetailsPage';
-import { data } from '../helpers/constants'
+import { data } from '../helpers/constants';
 
 const expirationDate = data.creditCardExpirationDate;
 const securityCode = data.creditCardSecurityCode;
 
-
-test.beforeEach('Common flow', async ({page}) => {
+test.beforeEach('Common flow', async ({ page }) => {
   const sideBar = new SideBar(page);
   const catalogPage = new CatalogPage(page);
   const header = new Header(page);
@@ -24,16 +23,16 @@ test.beforeEach('Common flow', async ({page}) => {
 
   await catalogPage.clickProduct('Noir jacket');
 
-  await productDetailsPage.addProductFlow({ 
+  await productDetailsPage.addProductFlow({
     productSize: 'L',
-    colorName: 'Red'
+    colorName: 'Red',
   });
   await header.expectProductAddedToCart(1);
 
   await header.clickCheckOut();
   await cartPage.expectCheckOutButtonEnabled();
   await cartPage.clickCheckOutButton();
-})
+});
 
 test('Add one product to cart and checkout', async ({ page }) => {
   const checkoutPage = new CheckOutPage(page);
@@ -48,14 +47,14 @@ test('Add one product to cart and checkout', async ({ page }) => {
     address: 'WTC Almere, Level 25',
     postalCode: '1300 CH',
     city: 'Almere',
-    phone: '+31 6 12345678'
-});
+    phone: '+31 6 12345678',
+  });
 
   await checkoutPage.fillPaymentInfo({
     cardNumber: cardNumber,
     expirationDate: expirationDate,
     securityCode: securityCode,
-});
+  });
 
   await checkoutPage.clickPayNow();
   await checkoutPage.expectPaymentSuccessful();
@@ -74,14 +73,14 @@ test('Verify invalid card fails checkout', async ({ page }) => {
     address: 'WTC Almere, Level 25',
     postalCode: '1300 CH',
     city: 'Almere',
-    phone: '+31 6 12345678'
-});
+    phone: '+31 6 12345678',
+  });
 
   await checkoutPage.fillPaymentInfo({
     cardNumber: invalidCardNumber,
     expirationDate: expirationDate,
     securityCode: securityCode,
-});
+  });
 
   await checkoutPage.clickPayNow();
   await checkoutPage.expectPaymentUnsuccessful();

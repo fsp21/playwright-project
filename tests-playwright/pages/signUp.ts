@@ -11,19 +11,21 @@ export class SignUpPage {
 
   constructor(page: Page) {
     this.page = page;
-    // div and input have same "first name" name, can't use label 
+    // div and input have same "first name" name, can't use label
     this.firstNameField = this.page.locator('input#first_name');
     this.lastNameField = this.page.locator('input#last_name');
     this.emailAddressField = this.page.locator('input#email');
     this.passwordField = this.page.locator('input#password');
-    this.createButton = this.page.getByRole('button', {name: 'Create'})
+    this.createButton = this.page.getByRole('button', { name: 'Create' });
     // is this localized? other languages etc
-    this.emailAlreadyInUseMessage = this.page.getByText('This email address is already associated with an account. If this account is yours, you can reset your password')
+    this.emailAlreadyInUseMessage = this.page.getByText(
+      'This email address is already associated with an account. If this account is yours, you can reset your password',
+    );
   }
 
   async signUp(userEmail: string, userPassword: string) {
-    await this.firstNameField.fill('First name test')
-    await this.lastNameField.fill('Last name test')
+    await this.firstNameField.fill('First name test');
+    await this.lastNameField.fill('Last name test');
     await this.emailAddressField.fill(userEmail);
     await this.passwordField.fill(userPassword);
     await this.createButton.click();
@@ -32,5 +34,4 @@ export class SignUpPage {
   async expectEmailAlreadyInUseMessage() {
     await expect(this.emailAlreadyInUseMessage).toBeVisible();
   }
-
 }
