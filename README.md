@@ -1,4 +1,5 @@
 # playwright-project
+
 Built with:
 
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev)
@@ -15,18 +16,23 @@ cd playwright-project
 npm install
 npx playwright install
 ```
+
 ## To execute tests
+
 Entire suite:
+
 ```bash
 npm run test
 ```
 
 UI tests:
+
 ```bash
 npm run test:ui
 ```
 
 API tests:
+
 ```bash
 npm run test:api
 ```
@@ -40,4 +46,3 @@ Further checks can be implemented if we can control the data, such as the price/
 ## Test Payment Credentials
 
 This project uses Shopify's Bogus Gateway for checkout testing (integrated into https://sauce-demo.myshopify.com/checkouts). 1 = success, 2 = failure and 3 = gateway error (https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
-

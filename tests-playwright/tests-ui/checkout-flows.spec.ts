@@ -10,7 +10,7 @@ import { data } from '../helpers/constants';
 const expirationDate = data.creditCardExpirationDate;
 const securityCode = data.creditCardSecurityCode;
 
-test.beforeEach('Common flow', async ({ page }) => {
+test.beforeEach('Add to cart and click checkout flow', async ({ page }) => {
   const sideBar = new SideBar(page);
   const catalogPage = new CatalogPage(page);
   const header = new Header(page);
@@ -34,7 +34,7 @@ test.beforeEach('Common flow', async ({ page }) => {
   await cartPage.clickCheckOutButton();
 });
 
-test('Add one product to cart and checkout', async ({ page }) => {
+test('Successful checkout', async ({ page }) => {
   const checkoutPage = new CheckOutPage(page);
   const cardNumber = data.creditCardNumber;
 
