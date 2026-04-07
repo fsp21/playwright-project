@@ -7,6 +7,15 @@ Built with:
 
 This project was built as a demo exercise to illustrate a Playwright test project, which includes UI and API tests and support files/structures.
 
+## Setup
+
+```bash
+git clone https://github.com/fsp21/playwright-project.git
+cd NB-project
+npm install
+npx playwright install
+```
+
 ## Planned and executed UI tests
 
 Currently there are 4 effective tests being executed covering relevant flows, namely add to cart, complete checkout (including failure check) and verifying sold-out items behavior. Login and Signup tests are being skipped due to bot protection recognizing Playwright's automation flags.
