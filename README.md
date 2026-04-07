@@ -15,6 +15,21 @@ cd playwright-project
 npm install
 npx playwright install
 ```
+## To execute tests
+Entire suite:
+```bash
+npm run test
+```
+
+UI tests:
+```bash
+npm run test:ui
+```
+
+API tests:
+```bash
+npm run test:api
+```
 
 ## Planned and executed UI tests
 
