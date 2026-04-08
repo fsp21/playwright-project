@@ -3,7 +3,7 @@ import { data } from '../helpers/constants';
 
 let tokenValue: string;
 let createdBookingId: number;
-let bookingBody = {
+const bookingBody = {
   firstname: 'Jim',
   lastname: 'Brown',
   totalprice: 111,
@@ -14,7 +14,7 @@ let bookingBody = {
   },
   additionalneeds: 'Breakfast',
 };
-let updatedBookingBody = {
+const updatedBookingBody = {
   firstname: 'Ronaldo',
   lastname: 'Nazário',
   totalprice: 2222,

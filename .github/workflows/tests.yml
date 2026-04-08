@@ -1,0 +1,26 @@
+name: GHA Tests
+on:
+  workflow_dispatch:
+  workflow_call:
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          cache: 'npm'
+      - name: npm ci
+        run: npm ci
+      - name: Install playwright
+        run: npx playwright install --with-deps --no-shell chromium
+      - name: Run tests
+        run: npm run test
+      - uses: actions/upload-artifact@v6
+        if: failure() || cancelled()
+        with:
+          name: playwright-output
+          path: |
+            test/reports
+            log/test.log
+          retention-days: 7

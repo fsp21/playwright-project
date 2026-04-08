@@ -3,7 +3,7 @@ import { data } from '../helpers/constants';
 
 let tokenValue: string;
 let createdBookingId: number;
-let bookingBody = {
+const bookingBody = {
   firstname: 'Jim',
   lastname: 'Brown',
   totalprice: 111,
@@ -20,16 +20,7 @@ test.describe.serial('Authenticated failed scenarios', () => {
     request,
   }) => {
     const response = await request.post('/booking', {
-      data: {
-        lastname: 'Brown',
-        totalprice: 111,
-        depositpaid: true,
-        bookingdates: {
-          checkin: '2018-01-01',
-          checkout: '2019-01-01',
-        },
-        additionalneeds: 'Breakfast',
-      },
+      data: bookingBody,
     });
 
     expect(response.status()).toBe(500);
