@@ -5,3 +5,4 @@ on:
 jobs:
   call-e2e:
     uses: ./.github/workflows/base-playwright-workflow.yml
+    secrets: inherit
