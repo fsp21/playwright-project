@@ -40,6 +40,5 @@ jobs:
         with:
           name: playwright-output
           path: |
-            test/reports
-            log/test.log
+            test-results/
           retention-days: 7

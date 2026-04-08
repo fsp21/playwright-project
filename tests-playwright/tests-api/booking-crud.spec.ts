@@ -37,6 +37,7 @@ test.describe.serial('CRUD full lifecycle', () => {
     let responseBody = await response.json();
     tokenValue = responseBody.token;
     expect(response.status()).toBe(200);
+    console.log(responseBody.token)
     expect(typeof responseBody.token).toBe('string');
   });
   test('[POST] Create a booking', async ({ request }) => {
