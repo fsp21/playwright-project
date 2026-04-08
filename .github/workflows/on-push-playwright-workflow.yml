@@ -1,0 +1,7 @@
+name: 'Playwright CI Tests [push to main]'
+on:
+  push:
+    branches: [main]
+jobs:
+  call-e2e:
+    uses: ./.github/workflows/base-playwright-workflow.yml
