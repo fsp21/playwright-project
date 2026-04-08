@@ -16,7 +16,7 @@ cd playwright-project
 npm install
 npx playwright install
 ```
-
+Need .env file
 ## To execute tests
 
 Entire suite:
