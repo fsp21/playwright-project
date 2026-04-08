@@ -20,7 +20,7 @@ test.describe.serial('Authenticated failed scenarios', () => {
     request,
   }) => {
     const response = await request.post('/booking', {
-      data: bookingBody,
+      data: {body: 'fake body'},
     });
 
     expect(response.status()).toBe(500);

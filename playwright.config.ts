@@ -8,7 +8,7 @@ export default defineConfig({
   testDir: './tests-playwright',
   retries: process.env.CI ? 1 : 0,
   workers: 1,
-
+  reporter: 'list',
   use: {
     baseURL: 'https://sauce-demo.myshopify.com',
     headless: true,
