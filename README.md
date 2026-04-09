@@ -21,7 +21,7 @@ Since this is a reasonably small project, I've set Playwright configuration file
 - 'list' reporter for better CI monitoring
 - Only Chrome browser for faster setup time
 
-.env file contains "sensitive" credentials and naturally is not committed to github, they're available as repository secrets for GHA (realistically we'd share the .env file through controlled and safe methods)
+.env file contains "sensitive" credentials and naturally is not committed to github, they're available as repository secrets for GHA (realistically we'd share the file through controlled and safe methods)
 
 For CI testing, I'm using GHA and I heavily prefer the reusable workflow pattern, where a main workflow contains all the logic, setup and configs, and subsequent "call" workflows can be created on demand. That way we can isolate conditions, triggers and specific logic for given scenarios (e.g.: changes targeting specific files, execute after all merges, trigger with labels, etc).
 
@@ -30,6 +30,9 @@ Given the project is small, I've setup only one trigger: after every push to mai
 ## Project structure
 
 ```bash
+.github/workflows/
+  base-playwright-workflow.yml    # Reusable workflow with test logic
+  on-push-playwright-workflow.yml # Trigger: push to main
 tests-playwright/
   tests-ui/          # UI specs
   tests-api/         # API specs
@@ -47,7 +50,7 @@ npm install
 npx playwright install
 ```
 
-A .env file is required -- see .env.example for the required variables
+A .env file is required at the root of the project -- see .env.example for the required variables
 
 ## To execute tests
 
