@@ -28,60 +28,60 @@ const updatedBookingBody = {
 
 test.describe.serial('CRUD full lifecycle', () => {
   test.beforeAll('[POST] Auth - Create token', async ({ request }) => {
-    const response = await request.post('/auth', {
+    const createTokenResponse = await request.post('/auth', {
       data: {
         username: data.apiUserName,
         password: data.apiPassword,
       },
     });
-    const responseBody = await response.json();
-    tokenValue = responseBody.token;
-    expect(response.status()).toBe(200);
-    expect(typeof responseBody.token).toBe('string');
+    const createTokenResponseBody = await createTokenResponse.json();
+    tokenValue = createTokenResponseBody.token;
+    expect(createTokenResponse.status()).toBe(200);
+    expect(typeof createTokenResponseBody.token).toBe('string');
   });
   test('[POST] Create a booking', async ({ request }) => {
-    const response = await request.post('/booking', {
+    const createBookingResponse = await request.post('/booking', {
       data: bookingBody,
     });
-    const responseBody = await response.json();
-    createdBookingId = responseBody.bookingid;
+    const createBookingResponseBody = await createBookingResponse.json();
+    createdBookingId = createBookingResponseBody.bookingid;
 
-    expect(response.status()).toBe(200);
-    expect(responseBody).toEqual({
-      bookingid: responseBody.bookingid,
+    expect(createBookingResponse.status()).toBe(200);
+    expect(createBookingResponseBody).toEqual({
+      bookingid: createBookingResponseBody.bookingid,
       booking: bookingBody,
     });
   });
   test('[GET] Return a specific booking', async ({ request }) => {
-    const response = await request.get(`/booking/${createdBookingId}`);
+    const returnBookingResponse = await request.get(`/booking/${createdBookingId}`);
 
-    expect(response.status()).toBe(200);
-    const responseBody = await response.json();
-    expect(responseBody).toEqual(bookingBody);
+    expect(returnBookingResponse.status()).toBe(200);
+    const returnBookingResponseBody = await returnBookingResponse.json();
+    expect(returnBookingResponseBody).toEqual(bookingBody);
   });
   test('[PUT] Update a specific booking', async ({ request }) => {
-    const response = await request.put(`/booking/${createdBookingId}`, {
+    const updateBookingResponse = await request.put(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: `token=${tokenValue}`,
       },
       data: updatedBookingBody,
     });
 
-    expect(response.status()).toBe(200);
-    const responseBody = await response.json();
-    expect(responseBody).toEqual(updatedBookingBody);
+    expect(updateBookingResponse.status()).toBe(200);
+    const updateBookingResponseBody = await updateBookingResponse.json();
+    expect(updateBookingResponseBody).toEqual(updatedBookingBody);
   });
   test('[DELETE] Delete a specific booking', async ({ request }) => {
-    const response = await request.delete(`/booking/${createdBookingId}`, {
+    const deleteBookingResponse = await request.delete(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: `token=${tokenValue}`,
       },
     });
-    expect(response.status()).toBe(201);
+    expect(deleteBookingResponse.status()).toBe(201);
   });
   test('[GET] Confirm deleted booking does not exist', async ({ request }) => {
-    const response = await request.get(`/booking/${createdBookingId}`);
+    const getBookingResponse = await request.get(`/booking/${createdBookingId}`);
 
-    expect(response.status()).toBe(404);
+    expect(getBookingResponse.status()).toBe(404);
   });
 });
