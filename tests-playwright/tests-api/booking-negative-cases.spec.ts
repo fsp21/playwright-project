@@ -108,7 +108,7 @@ test.describe.serial('Authenticated failed scenarios', () => {
     expect(response.status()).toBe(403);
   });
   test('[DELETE] Fail to delete inexistent booking', async ({ request }) => {
-    const response = await request.delete(`/booking/invalidBookingId`, {
+    const response = await request.delete(`/booking/1122334455`, {
       headers: {
         Cookie: `token=${tokenValue}`,
       },

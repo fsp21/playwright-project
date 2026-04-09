@@ -10,15 +10,18 @@ export default defineConfig({
   workers: 1,
   reporter: 'list',
   use: {
-    baseURL: 'https://sauce-demo.myshopify.com',
     headless: true,
     screenshot: 'only-on-failure',
+    launchOptions: {
+      slowMo: process.env.SLOWMO ? parseInt(process.env.SLOWMO) : 0,
+    },
   },
 
   projects: [
     {
       name: 'ui',
       use: {
+        baseURL: 'https://sauce-demo.myshopify.com',
         ...devices['Desktop Chrome'],
       },
       testMatch: 'tests-ui/**/*.spec.ts',
