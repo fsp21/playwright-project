@@ -51,6 +51,25 @@ test.describe.serial('Authenticated failed scenarios', () => {
     });
 
     const updateResponse = await request.put(`/booking/${createdBookingId}`, {
+      data: bookingBody,
+    });
+
+    expect(updateResponse.status()).toBe(403);
+  });
+  test('[PUT] Fail to update with invalid token', async ({ request }) => {
+    const response = await request.post('/booking', {
+      data: bookingBody,
+    });
+    let responseBody = await response.json();
+    createdBookingId = responseBody.bookingid;
+
+    expect(response.status()).toBe(200);
+    expect(responseBody).toEqual({
+      bookingid: responseBody.bookingid,
+      booking: bookingBody,
+    });
+
+    const updateResponse = await request.put(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: 'token=abc',
       },
