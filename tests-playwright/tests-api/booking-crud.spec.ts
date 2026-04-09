@@ -34,7 +34,7 @@ test.describe.serial('CRUD full lifecycle', () => {
         password: data.apiPassword,
       },
     });
-    let responseBody = await response.json();
+    const responseBody = await response.json();
     tokenValue = responseBody.token;
     expect(response.status()).toBe(200);
     expect(typeof responseBody.token).toBe('string');
@@ -43,7 +43,7 @@ test.describe.serial('CRUD full lifecycle', () => {
     const response = await request.post('/booking', {
       data: bookingBody,
     });
-    let responseBody = await response.json();
+    const responseBody = await response.json();
     createdBookingId = responseBody.bookingid;
 
     expect(response.status()).toBe(200);
@@ -56,7 +56,7 @@ test.describe.serial('CRUD full lifecycle', () => {
     const response = await request.get(`/booking/${createdBookingId}`);
 
     expect(response.status()).toBe(200);
-    let responseBody = await response.json();
+    const responseBody = await response.json();
     expect(responseBody).toEqual(bookingBody);
   });
   test('[PUT] Update a specific booking', async ({ request }) => {
@@ -68,7 +68,7 @@ test.describe.serial('CRUD full lifecycle', () => {
     });
 
     expect(response.status()).toBe(200);
-    let responseBody = await response.json();
+    const responseBody = await response.json();
     expect(responseBody).toEqual(updatedBookingBody);
   });
   test('[DELETE] Delete a specific booking', async ({ request }) => {

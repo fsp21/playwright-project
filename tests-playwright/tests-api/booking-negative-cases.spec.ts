@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { data } from '../helpers/constants';
 
-let tokenValue: string;
-let createdBookingId: number;
 const bookingBody = {
   firstname: 'Jim',
   lastname: 'Brown',
@@ -15,104 +13,136 @@ const bookingBody = {
   additionalneeds: 'Breakfast',
 };
 
-test.describe.serial('Authenticated failed scenarios', () => {
   test('[POST] Fail to create a booking with missing required field', async ({
     request,
   }) => {
-    const response = await request.post('/booking', {
+    const createBookingResponse = await request.post('/booking', {
       data: { body: 'fake body' },
     });
 
-    expect(response.status()).toBe(500);
+    expect(createBookingResponse.status()).toBe(500);
   });
   test('[POST] Fail to create token with invalid credentials', async ({
     request,
   }) => {
-    const response = await request.post('/auth', {
+    const createTokenResponse = await request.post('/auth', {
       data: {
         username: 'test',
         password: 'password',
       },
     });
-    let responseBody = await response.json();
-    expect(responseBody.reason).toBe('Bad credentials');
+    const createTokenResponseBody = await createTokenResponse.json();
+    expect(createTokenResponseBody.reason).toBe('Bad credentials');
   });
   test('[PUT] Fail to update without token', async ({ request }) => {
-    const response = await request.post('/booking', {
+    const createBookingResponse = await request.post('/booking', {
       data: bookingBody,
     });
-    let responseBody = await response.json();
-    createdBookingId = responseBody.bookingid;
+    const createBookingResponseBody = await createBookingResponse.json();
+    const createdBookingId = createBookingResponseBody.bookingid;
 
-    expect(response.status()).toBe(200);
-    expect(responseBody).toEqual({
-      bookingid: responseBody.bookingid,
+    expect(createBookingResponse.status()).toBe(200);
+    expect(createBookingResponseBody).toEqual({
+      bookingid: createBookingResponseBody.bookingid,
       booking: bookingBody,
     });
 
-    const updateResponse = await request.put(`/booking/${createdBookingId}`, {
+    const updateBookingResponse = await request.put(`/booking/${createdBookingId}`, {
       data: bookingBody,
     });
 
-    expect(updateResponse.status()).toBe(403);
+    expect(updateBookingResponse.status()).toBe(403);
   });
   test('[PUT] Fail to update with invalid token', async ({ request }) => {
-    const response = await request.post('/booking', {
+    const createBookingResponse = await request.post('/booking', {
       data: bookingBody,
     });
-    let responseBody = await response.json();
-    createdBookingId = responseBody.bookingid;
+    const createBookingResponseBody = await createBookingResponse.json();
+    const createdBookingId = createBookingResponseBody.bookingid;
 
-    expect(response.status()).toBe(200);
-    expect(responseBody).toEqual({
-      bookingid: responseBody.bookingid,
+    expect(createBookingResponse.status()).toBe(200);
+    expect(createBookingResponseBody).toEqual({
+      bookingid: createBookingResponseBody.bookingid,
       booking: bookingBody,
     });
 
-    const updateResponse = await request.put(`/booking/${createdBookingId}`, {
+    const updateBookingResponse = await request.put(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: 'token=abc',
       },
       data: bookingBody,
     });
 
-    expect(updateResponse.status()).toBe(403);
+    expect(updateBookingResponse.status()).toBe(403);
   });
   test('[PUT] Fail to update due to incorrect body', async ({ request }) => {
-    const response = await request.post('/auth', {
+    const createAuthResponse = await request.post('/auth', {
       data: {
         username: data.apiUserName,
         password: data.apiPassword,
       },
     });
-    let responseBody = await response.json();
-    tokenValue = responseBody.token;
-    expect(response.status()).toBe(200);
-    expect(typeof responseBody.token).toBe('string');
+    const createAuthResponseBody = await createAuthResponse.json();
+    const tokenValue = createAuthResponseBody.token;
+    expect(createAuthResponse.status()).toBe(200);
+    expect(typeof createAuthResponseBody.token).toBe('string');
 
-    const updateResponse = await request.put(`/booking/${createdBookingId}`, {
+    const createBookingResponse = await request.post('/booking', {
+      data: bookingBody,
+    });
+    const createBookingResponseBody = await createBookingResponse.json();
+    const createdBookingId = createBookingResponseBody.bookingid;
+
+    expect(createBookingResponse.status()).toBe(200);
+    expect(createBookingResponseBody).toEqual({
+      bookingid: createBookingResponseBody.bookingid,
+      booking: bookingBody,
+    });
+
+    const updateBookingResponse = await request.put(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: `token=${tokenValue}`,
       },
       data: { wrongBody: 'a' },
     });
 
-    expect(updateResponse.status()).toBe(400);
+    expect(updateBookingResponse.status()).toBe(400);
   });
   test('[DELETE] Fail to delete with invalid token', async ({ request }) => {
-    const response = await request.delete(`/booking/${createdBookingId}`, {
+    const createBookingResponse = await request.post('/booking', {
+      data: bookingBody,
+    });
+    const createBookingResponseBody = await createBookingResponse.json();
+    const createdBookingId = createBookingResponseBody.bookingid;
+
+    expect(createBookingResponse.status()).toBe(200);
+    expect(createBookingResponseBody).toEqual({
+      bookingid: createBookingResponseBody.bookingid,
+      booking: bookingBody,
+    });
+    const deleteBookingResponse = await request.delete(`/booking/${createdBookingId}`, {
       headers: {
         Cookie: 'token=abc123',
       },
     });
-    expect(response.status()).toBe(403);
+    expect(deleteBookingResponse.status()).toBe(403);
   });
   test('[DELETE] Fail to delete inexistent booking', async ({ request }) => {
-    const response = await request.delete(`/booking/1122334455`, {
+    const createAuthResponse = await request.post('/auth', {
+      data: {
+        username: data.apiUserName,
+        password: data.apiPassword,
+      },
+    });
+    const createAuthResponseBody = await createAuthResponse.json();
+    const tokenValue = createAuthResponseBody.token;
+    expect(createAuthResponse.status()).toBe(200);
+    expect(typeof createAuthResponseBody.token).toBe('string');
+
+    const deleteBookingResponse = await request.delete(`/booking/1122334455`, {
       headers: {
         Cookie: `token=${tokenValue}`,
       },
     });
-    expect(response.status()).toBe(405);
+    expect(deleteBookingResponse.status()).toBe(405);
   });
-});
