@@ -7,4 +7,15 @@ export const data = {
   creditCardSecurityCode: '123',
   apiUserName: process.env.API_USERNAME ?? '',
   apiPassword: process.env.API_PASSWORD ?? '',
+  deliveryAddressInfo: {
+    email: 'test@abc.com',
+    firstName: 'FirstName',
+    lastName: 'LastName',
+    company: 'Old Blue',
+    country: 'Netherlands',
+    address: 'WTC Almere, Level 25',
+    postalCode: '1300 CH',
+    city: 'Almere',
+    phone: '+31 6 12345678',
+  },
 };

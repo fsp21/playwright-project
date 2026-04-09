@@ -20,7 +20,7 @@ test.describe.serial('Authenticated failed scenarios', () => {
     request,
   }) => {
     const response = await request.post('/booking', {
-      data: {body: 'fake body'},
+      data: { body: 'fake body' },
     });
 
     expect(response.status()).toBe(500);
@@ -79,5 +79,21 @@ test.describe.serial('Authenticated failed scenarios', () => {
     });
 
     expect(updateResponse.status()).toBe(400);
+  });
+  test('[DELETE] Fail to delete with invalid token', async ({ request }) => {
+    const response = await request.delete(`/booking/${createdBookingId}`, {
+      headers: {
+        Cookie: 'token=abc123',
+      },
+    });
+    expect(response.status()).toBe(403);
+  });
+  test('[DELETE] Fail to delete inexistent booking', async ({ request }) => {
+    const response = await request.delete(`/booking/invalidBookingId`, {
+      headers: {
+        Cookie: `token=${tokenValue}`,
+      },
+    });
+    expect(response.status()).toBe(405);
   });
 });
