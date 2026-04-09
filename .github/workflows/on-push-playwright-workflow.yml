@@ -3,6 +3,6 @@ on:
   push:
     branches: [main]
 jobs:
-  call-e2e:
+  run-entire-suite:
     uses: ./.github/workflows/base-playwright-workflow.yml
     secrets: inherit
