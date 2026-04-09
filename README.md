@@ -105,5 +105,4 @@ I've added 12 tests to cover what I considered most critical for this simple ser
 
 ## Test Payment Credentials
 
-In case you wondered how to actually checkout with payment information, this project uses Shopify's Bogus Gateway for testing (integrated into https://sauce-demo.myshopify.com/checkouts). That provides us specific values to mimic successful and unsuccessful scenarios:
-1 = success, 2 = failure (https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
+In case you wondered how to actually checkout with payment information, the website uses Shopify's Bogus Gateway for testing (integrated into the checkout flow). That provides us specific values to mimic successful and unsuccessful scenarios: credit card number 1 = success, 2 = failure (https://help.shopify.com/en/manual/checkout-settings/test-orders/payments-test-mode)
