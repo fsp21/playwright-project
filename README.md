@@ -23,6 +23,8 @@ Since this is a reasonably small project, I've set Playwright configuration file
 
 `.env` file contains "sensitive" credentials and naturally is not committed to github, they're available as repository secrets for GHA (realistically we'd share the file through controlled and safe methods)
 
+### CI
+
 For CI testing, I'm using GHA and I heavily prefer the reusable workflow pattern, where a main workflow contains all the logic, setup and configs, and subsequent "call" workflows can be created on demand. That way we can isolate conditions, triggers and specific logic for given scenarios (e.g.: changes targeting specific files, execute after all merges, trigger with labels, etc).
 
 Given the project is small, I've setup only one trigger: after every push to main branch.
