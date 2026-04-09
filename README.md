@@ -29,12 +29,14 @@ Given the project is small, I've setup only one trigger: after every push to mai
 
 ## Project structure
 
+```bash
 tests-playwright/
-tests-ui/ # UI specs
-tests-api/ # API specs
-pages/ # Page objects
-components/ # Page object components
-helpers/ # Env constants
+  tests-ui/          # UI specs
+  tests-api/         # API specs
+  pages/             # Page objects
+  components/        # Page object components
+  helpers/            # Env constants
+```
 
 ## Setup
 
@@ -45,7 +47,7 @@ npm install
 npx playwright install
 ```
 
-Need .env file
+A .env file is required -- see .env.example for the required variables
 
 ## To execute tests
 
@@ -83,15 +85,14 @@ Login and Signup tests are being skipped due to bot protection recognizing Playw
 I've added 12 tests to cover what I considered most critical for this simple service. We have:
 
 - the CRUD full lifecycle
-- negative scenarios to cover requests with invalid schemas, missing or invalid tokens and targeting inexistent records
+- negative scenarios to cover requests with invalid or incomplete bodies, missing or invalid tokens and targeting inexistent records
 - body assertions included to verify the full response structure and values
 
 ## What I'd add with more time and control of the systems under test
 
-- Test data management could be improved by generating unique data each run instead of hardcoded objects, using factory bots or real APIs to create users, orders or products
+- Test data management could be improved by generating unique data each run instead of hardcoded objects, using factory pattern or real APIs to create users, orders or products
 - Cross-browser validation (chose not to for practical reasons)
 - Dockerfile and compose setup for 1 command build+execution and reproducibility
-- Abstract repeated patterns into helper methods
 - UI: more scenarios could be added covering additional flows, such as more cart interactions (editing quantity, removing items, clearing cart), navigation and content assertion for other pages (external links) and search functionality
 - API: additional test suite dedicated to contract testing, another for performance validation
 
