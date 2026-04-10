@@ -17,7 +17,7 @@ Minimal dependency setup: only Playwright, support packages (dotenv, node type a
 Since this is a reasonably small project, I've set Playwright configuration file with modest specs:
 
 - 1 worker for practical reasons (exploring with 2 made me hit 'bot' protection features in the website way too fast)
-- 1 retry in CI (to workaround intermittent failures outside of our control - still important to monitor if any tests are flaky due to implementation issues)
+- 0 retries in CI (if something fails, we'll assess)
 - 'list' reporter for better CI monitoring
 - Only Chrome browser for faster setup time
 
