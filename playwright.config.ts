@@ -6,7 +6,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true });
 
 export default defineConfig({
   testDir: './tests-playwright',
-  retries: process.env.CI ? 1 : 0,
+  retries: 0,
   workers: 1,
   reporter: 'list',
   use: {
