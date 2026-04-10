@@ -11,5 +11,8 @@
     "test:ui": "playwright test --project=ui",
     "test:api": "playwright test --project=api",
     "format": "prettier --write ."
-  }
+  },
+  "engines": {
+  "node": ">=20"
+}
 }
